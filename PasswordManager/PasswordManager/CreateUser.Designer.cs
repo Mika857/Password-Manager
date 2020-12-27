@@ -33,6 +33,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.Username = new System.Windows.Forms.TextBox();
+            this.backButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -92,12 +93,26 @@
             this.Username.Size = new System.Drawing.Size(141, 20);
             this.Username.TabIndex = 10;
             // 
+            // backButton
+            // 
+            this.backButton.BackColor = System.Drawing.Color.Teal;
+            this.backButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.backButton.Location = new System.Drawing.Point(45, 170);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(75, 23);
+            this.backButton.TabIndex = 16;
+            this.backButton.Text = "Back";
+            this.backButton.UseVisualStyleBackColor = false;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
             // CreateUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(172, 158);
+            this.ClientSize = new System.Drawing.Size(172, 205);
+            this.Controls.Add(this.backButton);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -118,5 +133,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox Username;
+        private System.Windows.Forms.Button backButton;
     }
 }

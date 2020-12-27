@@ -42,5 +42,12 @@ namespace PasswordManager
                 this.Close();
             }
         }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            User form = new User();
+            form.Show();
+        }
     }
 }

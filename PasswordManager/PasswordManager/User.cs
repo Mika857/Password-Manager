@@ -41,32 +41,33 @@ namespace PasswordManager
         {
             for (int i = 0; i < users.Count; i++)
             {
-                if(Username.Text == users[i].username && textBox1.Text == users[i].password)
+                if (Username.Text == users[i].username && textBox1.Text == users[i].password)
                 {
                     Form1 form = new Form1(users[i].username);
                     form.Show();
                     this.Hide();
+                    return;
                 }
                 else
                 {
-                    if(Username.Text == users[i].username && textBox1.Text != users[i].password)
+                    if (Username.Text == users[i].username && textBox1.Text != users[i].password)
                     {
-                        string message = "Wrong Passsword!";
-                        string caption = "Log In Error";
-                        MessageBoxButtons buttons = MessageBoxButtons.OK;
+                        string msg = "Wrong Passsword!";
+                        string cap = "Log In Error";
+                        MessageBoxButtons but = MessageBoxButtons.OK;
 
-                        MessageBox.Show(message, caption, buttons);
-                    }
-                    else
-                    {
-                        string message = "Wrong User!";
-                        string caption = "Log In Error";
-                        MessageBoxButtons buttons = MessageBoxButtons.OK;
-
-                        MessageBox.Show(message, caption, buttons);
+                        MessageBox.Show(msg, cap, but);
+                        return;
                     }
                 }
+                
             }
+
+            string message = "Wrong User!";
+            string caption = "Log In Error";
+            MessageBoxButtons buttons = MessageBoxButtons.OK;
+
+            MessageBox.Show(message, caption, buttons);
         }
     }
 }
