@@ -197,7 +197,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Username);
             this.Controls.Add(this.Email);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.Name = "Form2";
             this.Text = "New Password";

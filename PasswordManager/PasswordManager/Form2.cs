@@ -18,6 +18,7 @@ namespace PasswordManager
         {
             InitializeComponent();
             currentUser = curUser;
+            Password.KeyDown += Password_KeyDown;
         }
 
         string[] passwordAvailable = { "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz", "1234567890", "_/()=?"};
@@ -49,15 +50,47 @@ namespace PasswordManager
 
         private void button2_Click(object sender, EventArgs e)
         {
+            SaveNewPassword();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+
+            Form1 newForm = new Form1(currentUser);
+
+            newForm.Show();
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Password_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                SaveNewPassword();
+            }
+        }
+
+        private void SaveNewPassword()
+        {
             //Save new password to existing passwords
 
             Data data = SaveLoadManager.Load(currentUser);
             List<Password> existingList = new List<Password>();
-            
 
-            if(data != null)
+
+            if (data != null)
             {
-                for(int i = 0; i < data.passwords.Length;i++)
+                for (int i = 0; i < data.passwords.Length; i++)
                 {
                     existingList.Add(data.passwords[i]);
                 }
@@ -77,32 +110,13 @@ namespace PasswordManager
 
             Data newData = new Data(newArr);
 
-            SaveLoadManager.Save(newData,currentUser);
+            SaveLoadManager.Save(newData, currentUser);
 
-            this.Hide();
-
-            Form1 newForm = new Form1(currentUser);
-
-            newForm.Show();
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            this.Hide();
+            this.Close();
 
             Form1 newForm = new Form1(currentUser);
 
             newForm.Show();
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

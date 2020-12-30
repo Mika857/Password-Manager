@@ -26,6 +26,9 @@ namespace PasswordManager
 
             passwordsShown = true;
             this.currentUser = currentUser;
+            userLabel.Text = "User: " + currentUser;
+
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -33,17 +36,7 @@ namespace PasswordManager
             Form2 newForm = new Form2(currentUser);
 
             newForm.Show();
-            this.Hide();
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+            this.Close();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -59,7 +52,13 @@ namespace PasswordManager
                     ListItem litem = new ListItem(currentUser);
                     litem.Email = data.passwords[i].email;
                     litem.Password = data.passwords[i].password;
-                    litem.NameApp = data.passwords[i].name;
+                    string nameA = data.passwords[i].name;
+                    if(nameA == "")
+                    {
+                        nameA = "Name";
+                    }
+                    litem.NameApp = nameA;
+
                     litem.Username = data.passwords[i].username;
                     litem.PasswordClass = data.passwords[i];
                     litem.LinkForm1 = this;
@@ -82,6 +81,7 @@ namespace PasswordManager
         private void button1_Click_1(object sender, EventArgs e)
         {
             this.Close();
+            Application.Exit();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -145,5 +145,31 @@ namespace PasswordManager
             
             
         }
+
+        #region Change Password
+        private void changePasswordButton_Click(object sender, EventArgs e)
+        {
+            FormChangeUserPassword form = new FormChangeUserPassword(currentUser,UserOptions.Password,this);
+            form.Show();
+            this.Hide();
+        }
+        #endregion
+
+        #region Change Username
+        private void changeUsernameButton_Click(object sender, EventArgs e)
+        {
+            FormChangeUserPassword form = new FormChangeUserPassword(currentUser, UserOptions.Username, this);
+            form.Show();
+            this.Hide();
+        }
+        #endregion
+
+        public void ChangeUsername(string username)
+        {
+            currentUser = username;
+            userLabel.Text = "User: " + currentUser;
+        }
+
+        
     }
 }

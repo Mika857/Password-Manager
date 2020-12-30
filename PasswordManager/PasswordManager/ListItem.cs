@@ -105,6 +105,7 @@ namespace PasswordManager
                 FormChangeProp newForm = new FormChangeProp(form1,passwordNumber,"name",nameApp, currentUser);
                 newForm.Text = "Change Name";
                 newForm.Show();
+                form1.Hide();
             }
         }
 
@@ -115,6 +116,7 @@ namespace PasswordManager
                 FormChangeProp newForm = new FormChangeProp(form1, passwordNumber, "username", username, currentUser);
                 newForm.Text = "Change Username";
                 newForm.Show();
+                form1.Hide();
             }
             else
             {
@@ -134,6 +136,7 @@ namespace PasswordManager
                 FormChangeProp newForm = new FormChangeProp(form1, passwordNumber, "email", email, currentUser);
                 newForm.Text = "Change Email";
                 newForm.Show();
+                form1.Hide();
             }
             else
             {
@@ -152,6 +155,7 @@ namespace PasswordManager
                 FormChangeProp newForm = new FormChangeProp(form1, passwordNumber, "password",password,currentUser);
                 newForm.Text = "Change Password";
                 newForm.Show();
+                form1.Hide();
             }
             else
             {

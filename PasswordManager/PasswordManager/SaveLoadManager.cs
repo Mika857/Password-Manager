@@ -9,8 +9,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace PasswordManager
 {
     public class SaveLoadManager
-    { 
-    
+    {
+        #region Save and Load Passwords
         public static void Save(Data data,string currentUser)
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -42,7 +42,9 @@ namespace PasswordManager
 
             return null;
         }
+        #endregion
 
+        #region Save and Load Users
         public static void SaveUser(SaveUsers data)
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -74,6 +76,7 @@ namespace PasswordManager
 
             return null;
         }
+        #endregion
     }
 
     #region Passwords

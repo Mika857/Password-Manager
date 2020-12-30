@@ -12,6 +12,7 @@ namespace PasswordManager
 {
     public partial class User : Form
     {
+        //public event System.Windows.Forms.KeyPressEventHandler KeyPress;
         List<UserClass> users = new List<UserClass>();
         public User()
         {
@@ -23,11 +24,21 @@ namespace PasswordManager
             {
                 users = dataUser.userList;
             }
+
+            textBox1.KeyDown += TextBox1_KeyDown;
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void TextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                CheckUser();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -38,6 +49,11 @@ namespace PasswordManager
         }
 
         private void button2_Click(object sender, EventArgs e)
+        {
+            CheckUser();
+        }
+
+        private void CheckUser()
         {
             for (int i = 0; i < users.Count; i++)
             {
@@ -60,7 +76,7 @@ namespace PasswordManager
                         return;
                     }
                 }
-                
+
             }
 
             string message = "Wrong User!";

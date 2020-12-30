@@ -23,11 +23,32 @@ namespace PasswordManager
             this.change = change;
             changeBox.Text = currentInput;
             currentUser = currUser;
+
+            changeBox.KeyDown += changeBox_KeyDown;
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            switch(change)
+            SaveNewProps(sender, e);   
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            form.Show();
+        }
+
+        private void changeBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                SaveNewProps(sender, e);
+            }   
+        }
+
+        private void SaveNewProps(object sender, EventArgs e)
+        {
+            switch (change)
             {
                 case "name":
                     form.data.passwords[index].name = changeBox.Text;
@@ -46,14 +67,10 @@ namespace PasswordManager
                     break;
             }
 
-            SaveLoadManager.Save(form.data,currentUser);
+            SaveLoadManager.Save(form.data, currentUser);
             form.ReloadForm(sender, e);
             this.Close();
-        }
-
-        private void backButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            form.Show();
         }
     }
 }
