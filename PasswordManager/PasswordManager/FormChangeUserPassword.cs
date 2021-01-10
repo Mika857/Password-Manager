@@ -15,7 +15,7 @@ namespace PasswordManager
     public partial class FormChangeUserPassword : Form
     {
         string currentUser;
-        SaveUsers saveUsers;
+        UserData saveUsers;
         UserOptions userOption;
         Form1 form1;
         public FormChangeUserPassword(string currUser, UserOptions option, Form1 form1)
@@ -25,10 +25,12 @@ namespace PasswordManager
             userOption = option;
             currentUser = currUser;
 
-            saveUsers = SaveLoadManager.LoadUsers();
+            saveUsers = SaveLoadManager.Load();
 
             if(userOption == UserOptions.Password)
             {
+                this.Text = "Change Password";
+
                 string password = "";
 
                 for (int i = 0; i < saveUsers.userList.Count; i++)
@@ -46,6 +48,8 @@ namespace PasswordManager
             }
             else
             {
+                this.Text = "Change Username";
+
                 changeBox.Text = currentUser;
 
                 changeBox.UseSystemPasswordChar = false;
@@ -71,6 +75,8 @@ namespace PasswordManager
             if(e.KeyCode == Keys.Enter)
             {
                 SaveUserPassword();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
             }
         }
 
@@ -107,6 +113,7 @@ namespace PasswordManager
                         if (!alreadyExisting)
                         {
                             saveUsers.userList[i].username = changeBox.Text;
+                            saveUsers.lastUser = changeBox.Text;
                             form1.ChangeUsername(changeBox.Text);
 
                             string place = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Mika/";
@@ -126,7 +133,7 @@ namespace PasswordManager
                 }
             }
 
-            SaveLoadManager.SaveUser(saveUsers);
+            SaveLoadManager.Save(saveUsers);
             this.Close();
             form1.Show();
         }

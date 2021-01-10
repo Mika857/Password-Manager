@@ -12,23 +12,21 @@ namespace PasswordManager
 {
     public partial class CreateUser : Form
     {
-        SaveUsers users;
-        List<UserClass> userList;
+        UserData users;
         public CreateUser()
         {
             InitializeComponent();
 
-            userList = new List<UserClass>();
+            users = new UserData(new List<UserClass>(), "");
             
-            SaveUsers dataUser = SaveLoadManager.LoadUsers();
+            UserData dataUser = SaveLoadManager.Load();
 
             if (dataUser != null)
             {
-                userList = dataUser.userList;
+                users = dataUser;
             }
 
-            users = new SaveUsers(userList);
-
+          
             textBox2.KeyDown += textBox2_KeyDown;
         }
 
@@ -49,6 +47,8 @@ namespace PasswordManager
             if(e.KeyCode == Keys.Enter)
             {
                 CreateNewUser();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
             }
         }
 
@@ -56,9 +56,9 @@ namespace PasswordManager
         {
             bool alreadyUsed = false;
 
-            for (int i = 0; i < userList.Count; i++)
+            for (int i = 0; i < users.userList.Count; i++)
             {
-                if (Username.Text == userList[i].username)
+                if (Username.Text == users.userList[i].username)
                 {
                     alreadyUsed = true;
                     break;
@@ -77,8 +77,11 @@ namespace PasswordManager
             {
                 UserClass newUser = new UserClass(Username.Text, textBox1.Text);
                 users.userList.Add(newUser);
-                SaveLoadManager.SaveUser(users);
+                users.lastUser = Username.Text;
+                SaveLoadManager.Save(users);
+
                 Form1 form = new Form1(Username.Text);
+
                 form.Show();
                 this.Close();
             }

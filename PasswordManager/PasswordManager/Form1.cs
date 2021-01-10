@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using PasswordManager.GroupManagement;
 
 namespace PasswordManager
 {
@@ -28,48 +29,34 @@ namespace PasswordManager
             this.currentUser = currentUser;
             userLabel.Text = "User: " + currentUser;
 
-            
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Form2 newForm = new Form2(currentUser);
-
-            newForm.Show();
-            this.Close();
+            data = SaveLoadManager.Load(currentUser);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
             //load all passwords
             data = SaveLoadManager.Load(currentUser);
 
             if (data != null)
             {
-                for (int i = 0; i < data.passwords.Length; i++)
+                for (int i = 0; i < data.passwords.Count; i++)
                 {
-                    ListItem litem = new ListItem(currentUser);
-                    litem.Email = data.passwords[i].email;
-                    litem.Password = data.passwords[i].password;
-                    string nameA = data.passwords[i].name;
-                    if(nameA == "")
-                    {
-                        nameA = "Name";
-                    }
-                    litem.NameApp = nameA;
+                    ListItem litem = new ListItem(currentUser,data.passwords[i],this,i);
 
-                    litem.Username = data.passwords[i].username;
-                    litem.PasswordClass = data.passwords[i];
-                    litem.LinkForm1 = this;
-                    litem.PasswordNumber = i;
+                    Console.WriteLine(litem.GroupName);
+
                     passwordContainer.Controls.Add(litem);
+                    litem.Show();
                     //listItems.Add(litem);
                 }
             }
 
 
         }
+
+        
+
+        
 
         public void ReloadForm(object sender, EventArgs e)
         {
@@ -78,33 +65,53 @@ namespace PasswordManager
             Form1_Load(sender, e);
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        public void ReloadForm()
         {
-            this.Close();
-            Application.Exit();
+            object sender = new object();
+            EventArgs e = new EventArgs();
+
+            passwordContainer.Controls.Clear();
+            Form1_Load(sender, e);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        public void ReloadForm(string groupName)
         {
-            if(!passwordsShown) //show passwords
+            passwordContainer.Controls.Clear();
+
+            if(data != null)
             {
-                passwordContainer.Show();
-                passwordsShown = !passwordsShown;
-                hideShowButton.Text = "Hide Passwords";
+                for (int i = 0; i < data.passwords.Count; i++)
+                {
+                    Password password = data.passwords[i];
+                    if (password.groupName == groupName)
+                    {
+                        ListItem litem = new ListItem(currentUser, password, this, i);
+                        passwordContainer.Controls.Add(litem);
+                        litem.Show();
+                    }
+                }
             }
-            else // hide passwords
-            {
-                passwordContainer.Hide();
-                passwordsShown = !passwordsShown;
-                hideShowButton.Text = "Show Passwords";
-            }
+
+            
         }
 
+      
+
+      
         private void logOutButton_Click(object sender, EventArgs e)
         {
+
             User form = new User();
             form.Show();
-            this.Close();
+
+            for (int i = Application.OpenForms.Count - 1; i >= 0; i--)
+            {
+                if (Application.OpenForms[i].Name != form.Name) Application.OpenForms[i].Close();
+            }
+
+
+            //bud but easy fix
+            //Application.Restart();
         }
 
         private void deletUserButton_Click(object sender, EventArgs e)
@@ -117,7 +124,7 @@ namespace PasswordManager
 
             if(result == DialogResult.Yes)
             {
-                SaveUsers users = SaveLoadManager.LoadUsers();
+                UserData users = SaveLoadManager.Load();
 
                 if (users != null)
                 {
@@ -129,7 +136,7 @@ namespace PasswordManager
                         }
                     }
 
-                    SaveLoadManager.SaveUser(users);
+                    SaveLoadManager.Save(users);
 
                     string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Mika/" + currentUser;
                     if (Directory.Exists(path))
@@ -170,6 +177,97 @@ namespace PasswordManager
             userLabel.Text = "User: " + currentUser;
         }
 
+        private void alphabetSortButton_Click(object sender, EventArgs e)
+        {
+            //sort list by alphabet | x - 'A': number starting with 0 
+
+     
+
+            if(data.passwords.Count > 1)
+            {
+                for (int i = 1; i < data.passwords.Count; i++)
+                {
+                    for (int j = 0; j < data.passwords.Count - (i); j++)
+                    {
+                        char firstLetter1 = data.passwords[j].name.ToLower()[0];
+                        char firstLetter2 = data.passwords[j + 1].name.ToLower()[0];
+
+                        int num1 = firstLetter1 - 'A';
+                        int num2 = firstLetter2 - 'A';
+
+                        if (num1 > num2) //change position
+                        {
+                            Password rePassword = data.passwords[j];
+                            data.passwords[j] = data.passwords[j + 1];
+                            data.passwords[j + 1] = rePassword;
+                        }
+                    }
+                }
+
+                SaveLoadManager.Save(data, currentUser);
+
+                ReloadForm();
+            }
+        }
+
         
+
+        private void manageGroupsButton_Click(object sender, EventArgs e)
+        {
+            foreach(Form form in Application.OpenForms)
+            {
+                if (form.Name == "ManageGroup") return;
+            }
+
+            ManageGroups fm = new ManageGroups(currentUser, ReloadForm);
+
+            fm.Show();
+        }
+
+        private void newpasswordButton_Click(object sender, EventArgs e)
+        {
+            Form2 newForm = new Form2(currentUser, this);
+
+            newForm.Show();
+            this.Hide();
+        }
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Application.Exit();
+        }
+
+     
+        private void hideShowButton_Click(object sender, EventArgs e)
+        {
+            if (!passwordsShown) //show passwords
+            {
+                passwordContainer.Show();
+                passwordsShown = !passwordsShown;
+                hideShowButton.Text = "Hide Passwords";
+            }
+            else // hide passwords
+            {
+                passwordContainer.Hide();
+                passwordsShown = !passwordsShown;
+                hideShowButton.Text = "Show Passwords";
+            }
+        }
+
+        private void sortGroupsButton_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name == "SortGroups")
+                {
+                    form.Show();
+                    return;
+                }
+            }
+
+            SortGroups groups = new SortGroups(this);
+            groups.Show();
+        }
     }
 }

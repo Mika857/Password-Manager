@@ -43,6 +43,8 @@ namespace PasswordManager
             if(e.KeyCode == Keys.Enter)
             {
                 SaveNewProps(sender, e);
+                e.Handled = true;
+                e.SuppressKeyPress = true;
             }   
         }
 

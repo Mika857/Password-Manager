@@ -14,18 +14,21 @@ namespace PasswordManager
     {
         //public event System.Windows.Forms.KeyPressEventHandler KeyPress;
         List<UserClass> users = new List<UserClass>();
+        string lastUser = "";
         public User()
         {
             InitializeComponent();
 
-            SaveUsers dataUser = SaveLoadManager.LoadUsers();
+            UserData dataUser = SaveLoadManager.Load();
 
             if(dataUser != null)
             {
                 users = dataUser.userList;
+                lastUser = dataUser.lastUser;
             }
 
             textBox1.KeyDown += TextBox1_KeyDown;
+            Username.Text = lastUser;
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -38,6 +41,8 @@ namespace PasswordManager
             if(e.KeyCode == Keys.Enter)
             {
                 CheckUser();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
             }
         }
 
@@ -60,6 +65,8 @@ namespace PasswordManager
                 if (Username.Text == users[i].username && textBox1.Text == users[i].password)
                 {
                     Form1 form = new Form1(users[i].username);
+                    UserData userClass = new UserData(users, Username.Text);
+                    SaveLoadManager.Save(userClass);
                     form.Show();
                     this.Hide();
                     return;

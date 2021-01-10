@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PasswordManager.GroupManagement;
 
 namespace PasswordManager
 {
@@ -14,11 +15,29 @@ namespace PasswordManager
     {
         private static Random ran = new Random();
         string currentUser;
-        public Form2(string curUser)
+        Form lastForm;
+
+        GroupData groupData;
+        public Form2(string curUser, Form lastForm)
         {
             InitializeComponent();
             currentUser = curUser;
             Password.KeyDown += Password_KeyDown;
+            this.lastForm = lastForm;
+
+            groupData = SaveLoadManager.LoadGroups();
+
+            if(groupData != null)
+            {
+                for (int i = 0; i < groupData.groupList.Count; i++)
+                {
+                    comboBox1.Items.Add(groupData.groupList[i].GroupName);
+                }
+            }
+            else
+            {
+                groupData = new GroupData(new List<GroupClass>());
+            }
         }
 
         string[] passwordAvailable = { "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz", "1234567890", "_/()=?"};
@@ -29,14 +48,13 @@ namespace PasswordManager
         {
             string finalPassword = "";
 
-            for(int i = 0;i < numericUpDown1.Value;i++)
+            for (int i = 0; i < numericUpDown1.Value; i++)
             {
                 int chapter = RandomInt(passwordAvailable.Length);
                 string passSplit = passwordAvailable[chapter];
                 int sign = RandomInt(passSplit.Length);
 
                 finalPassword += passSplit[sign];
-                
             }
 
             Password.Text = finalPassword;
@@ -62,9 +80,7 @@ namespace PasswordManager
         {
             this.Close();
 
-            Form1 newForm = new Form1(currentUser);
-
-            newForm.Show();
+            lastForm.Show();
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
@@ -77,6 +93,8 @@ namespace PasswordManager
             if(e.KeyCode == Keys.Enter)
             {
                 SaveNewPassword();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
             }
         }
 
@@ -85,38 +103,96 @@ namespace PasswordManager
             //Save new password to existing passwords
 
             Data data = SaveLoadManager.Load(currentUser);
-            List<Password> existingList = new List<Password>();
 
+            string groupName = "";
+
+            int index = 0;
+            bool exists = GroupExists(comboBox1.Text, ref index);
+
+            if (!exists)
+            {
+                groupName = comboBox1.Text;
+                GroupClass newGroup = new GroupClass(groupName);
+                groupData.groupList.Add(newGroup);
+                SaveLoadManager.Save(groupData);
+            }
+            else
+            {
+                groupName = comboBox1.Text;
+            }
+
+            Password newPassword = new Password(AppName.Text, Email.Text, Username.Text, Password.Text, groupName);
 
             if (data != null)
             {
-                for (int i = 0; i < data.passwords.Length; i++)
-                {
-                    existingList.Add(data.passwords[i]);
-                }
+                data.passwords.Add(newPassword);
             }
+            else
+            {
+                List<Password> list = new List<Password>();
+                list.Add(newPassword);
+                data = new Data(list);
+            }
+
+            
 
             //create new password 
-            Password newPassword = new Password(AppName.Text, Email.Text, Username.Text, Password.Text);
+           
 
-            existingList.Add(newPassword);
-
-            Password[] newArr = new Password[existingList.Count];
-
-            for (int i = 0; i < existingList.Count; i++)
-            {
-                newArr[i] = existingList[i];
-            }
-
-            Data newData = new Data(newArr);
-
-            SaveLoadManager.Save(newData, currentUser);
+            SaveLoadManager.Save(data, currentUser);
 
             this.Close();
 
-            Form1 newForm = new Form1(currentUser);
+            lastForm.Show();
+            Form1 lastForm1 = (Form1)lastForm;
+            lastForm1.ReloadForm();
+        }
 
-            newForm.Show();
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private bool GroupExists(string groupName, ref int index)
+        {
+            if(groupData != null)
+            {
+                for (int i = 0; i < groupData.groupList.Count; i++)
+                {
+                    if(groupData.groupList[i].GroupName == groupName)
+                    {
+                        index = i;
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private void ReloadForm()
+        {
+            groupData = SaveLoadManager.LoadGroups();
+            comboBox1.Items.Clear();
+            if(groupData != null)
+            {
+                foreach(GroupClass groupClass in groupData.groupList)
+                {
+                    comboBox1.Items.Add(groupClass.GroupName);
+                }
+            }
+        }
+
+        private void managaGroupsButton_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name == "ManageGroup") return;
+            }
+
+            ManageGroups fm = new ManageGroups(currentUser, ReloadForm);
+
+            fm.Show();
         }
     }
 }

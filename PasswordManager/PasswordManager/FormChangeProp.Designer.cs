@@ -35,7 +35,7 @@
             // 
             // changeBox
             // 
-            this.changeBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.changeBox.BackColor = System.Drawing.Color.White;
             this.changeBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.changeBox.Location = new System.Drawing.Point(12, 12);
             this.changeBox.Name = "changeBox";
@@ -44,12 +44,16 @@
             // 
             // saveButton
             // 
-            this.saveButton.BackColor = System.Drawing.Color.Teal;
+            this.saveButton.BackColor = System.Drawing.Color.Black;
+            this.saveButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.saveButton.FlatAppearance.BorderSize = 0;
             this.saveButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.saveButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.saveButton.Location = new System.Drawing.Point(12, 53);
+            this.saveButton.ForeColor = System.Drawing.Color.Gainsboro;
+            this.saveButton.Location = new System.Drawing.Point(0, 55);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(75, 23);
+            this.saveButton.Size = new System.Drawing.Size(176, 35);
             this.saveButton.TabIndex = 7;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = false;
@@ -57,12 +61,16 @@
             // 
             // backButton
             // 
-            this.backButton.BackColor = System.Drawing.Color.Teal;
+            this.backButton.BackColor = System.Drawing.Color.Black;
+            this.backButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.backButton.FlatAppearance.BorderSize = 0;
             this.backButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.backButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.backButton.Location = new System.Drawing.Point(93, 53);
+            this.backButton.ForeColor = System.Drawing.Color.Gainsboro;
+            this.backButton.Location = new System.Drawing.Point(0, 90);
             this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(75, 23);
+            this.backButton.Size = new System.Drawing.Size(176, 35);
             this.backButton.TabIndex = 8;
             this.backButton.Text = "Back";
             this.backButton.UseVisualStyleBackColor = false;
@@ -72,10 +80,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(176, 88);
-            this.Controls.Add(this.backButton);
+            this.BackColor = System.Drawing.Color.Black;
+            this.ClientSize = new System.Drawing.Size(176, 125);
             this.Controls.Add(this.saveButton);
+            this.Controls.Add(this.backButton);
             this.Controls.Add(this.changeBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;

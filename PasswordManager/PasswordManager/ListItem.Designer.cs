@@ -44,6 +44,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
+            this.groupLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -143,6 +144,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(122, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 23);
@@ -170,6 +172,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Cursor = System.Windows.Forms.Cursors.Cross;
             this.label2.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(3, 3);
             this.label2.Margin = new System.Windows.Forms.Padding(3);
             this.label2.Name = "label2";
@@ -185,6 +188,7 @@
             this.label3.AutoSize = true;
             this.label3.Cursor = System.Windows.Forms.Cursors.Cross;
             this.label3.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(3, 26);
             this.label3.Margin = new System.Windows.Forms.Padding(3);
             this.label3.Name = "label3";
@@ -200,6 +204,7 @@
             this.label4.AutoSize = true;
             this.label4.Cursor = System.Windows.Forms.Cursors.Cross;
             this.label4.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(3, 49);
             this.label4.Margin = new System.Windows.Forms.Padding(3);
             this.label4.Name = "label4";
@@ -222,15 +227,28 @@
             // 
             this.toolTip1.AutomaticDelay = 100;
             this.toolTip1.AutoPopDelay = 1000;
-            this.toolTip1.InitialDelay = 10;
+            this.toolTip1.InitialDelay = 100;
             this.toolTip1.ReshowDelay = 20;
             // 
             // toolTip2
             // 
             this.toolTip2.AutomaticDelay = 100;
             this.toolTip2.AutoPopDelay = 1000;
-            this.toolTip2.InitialDelay = 10;
+            this.toolTip2.InitialDelay = 100;
             this.toolTip2.ReshowDelay = 20;
+            // 
+            // groupLabel
+            // 
+            this.groupLabel.AutoSize = true;
+            this.groupLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupLabel.ForeColor = System.Drawing.Color.Black;
+            this.groupLabel.Location = new System.Drawing.Point(371, 8);
+            this.groupLabel.Name = "groupLabel";
+            this.groupLabel.Size = new System.Drawing.Size(71, 23);
+            this.groupLabel.TabIndex = 3;
+            this.groupLabel.Text = "(Group)";
+            this.toolTip2.SetToolTip(this.groupLabel, "edit group");
+            this.groupLabel.Click += new System.EventHandler(this.groupLabel_Click);
             // 
             // ListItem
             // 
@@ -238,6 +256,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
+            this.Controls.Add(this.groupLabel);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
@@ -276,5 +295,6 @@
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.ToolTip toolTip2;
         private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.Label groupLabel;
     }
 }

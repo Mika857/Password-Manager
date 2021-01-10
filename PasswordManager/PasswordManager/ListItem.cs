@@ -14,7 +14,7 @@ namespace PasswordManager
     {
         bool editing;
         string currentUser;
-        public ListItem(string currUser)
+        public ListItem(string currUser, Password password, Form1 form1, int passwordNumber)
         {
             InitializeComponent();
             //BackColor = Color.White;
@@ -22,17 +22,49 @@ namespace PasswordManager
             toolTip2.Active = false;
             pictureBox6.Visible = false;
             currentUser = currUser;
+
+            this.passwordClass = password;
+            this.NameApp = password.name;
+            this.Email = password.email;
+            this.Username = password.username;
+            this.Password = password.password;
+            this.GroupName = password.groupName;
+            this.form1 = form1;
+            this.passwordNumber = passwordNumber;
+
+            label1.MouseEnter += new System.EventHandler(label1_MouseHover);
+            label2.MouseEnter += new System.EventHandler(label2_MouseHover);
+            label3.MouseEnter += new System.EventHandler(label3_MouseHover);
+            label4.MouseEnter += new System.EventHandler(label4_MouseHover);
+            groupLabel.MouseEnter += new System.EventHandler(groupLabel_MouseHover);
+
+
+            label1.MouseLeave += new System.EventHandler(label1_MouseLeave);
+            label2.MouseLeave += new System.EventHandler(label2_MouseLeave);
+            label3.MouseLeave += new System.EventHandler(label3_MouseLeave);
+            label4.MouseLeave += new System.EventHandler(label4_MouseLeave);
+            groupLabel.MouseLeave += new System.EventHandler(groupLabel_MouseLeave);
         }
 
         #region Properties
-
+        //set by "propfull"
         private string nameApp;
 
         [Category("Custom Props")]
         public string NameApp
         {
             get { return nameApp; }
-            set { nameApp = value; label1.Text = value; }
+            set 
+            { 
+                nameApp = value; 
+
+                label1.Text = value; 
+
+                if(value == "")
+                {
+                    label1.Text = "Name";
+                }
+            }
         }
 
         private string email;
@@ -62,14 +94,36 @@ namespace PasswordManager
             set { password = value; label4.Text = "Password: " + value; }
         }
 
-        private Password passwordClass;
+        private string groupName;
 
+        public string GroupName
+        {
+            get { return groupName; }
+            set 
+            { 
+                groupName = value;
+                string currName = "-None-";
+
+                if(value != "")
+                {
+                    currName = value;
+                }
+
+                groupLabel.Text = "Group: " + currName;  
+            }
+        }
+
+
+
+
+        private Password passwordClass;
    
         public Password PasswordClass
         {
             get { return passwordClass; }
             set { passwordClass = value; }
         }
+
 
         //vorrübergehend - muss bessere lösung gefunden werden
 
@@ -89,7 +143,7 @@ namespace PasswordManager
             set { passwordNumber = value; }
         }
 
-
+        
 
         #endregion
 
@@ -177,7 +231,7 @@ namespace PasswordManager
         {
             if(!editing)
             {
-                form1.data.Remove(passwordNumber);
+                form1.data.passwords.Remove(PasswordClass);
                 this.Hide();
                 SaveLoadManager.Save(form1.data,currentUser);
                 form1.ReloadForm(sender, e);
@@ -206,7 +260,7 @@ namespace PasswordManager
         private void pictureBox3_Click(object sender, EventArgs e)
         {
             //move up in array
-            if (passwordNumber < form1.data.passwords.Length-1 && !editing)
+            if (passwordNumber < form1.data.passwords.Count-1 && !editing)
             {
                 int oldNumber = PasswordNumber + 1;
                 //Data update
@@ -226,6 +280,7 @@ namespace PasswordManager
         }
         #endregion
 
+        #region Edit Mode
         private void pictureBox4_Click(object sender, EventArgs e)
         {
             if (!editing) //edit mode
@@ -244,6 +299,84 @@ namespace PasswordManager
                 toolTip2.Active = false;
                 pictureBox6.Visible = false;
                 pictureBox5.Visible = true;
+            }
+        }
+        #endregion
+
+        #region Underline labels by hovering over them
+        private void label1_MouseHover(object sender, System.EventArgs e)
+        {
+            if(editing)
+            {
+                label1.Font = new Font(label1.Font, FontStyle.Underline | FontStyle.Bold);
+            }
+        }
+
+        private void label2_MouseHover(object sender, System.EventArgs e)
+        {
+            label2.Font = new Font(label2.Font,FontStyle.Underline);
+        }
+
+        private void label3_MouseHover(object sender, System.EventArgs e)
+        {
+            label3.Font = new Font(label3.Font, FontStyle.Underline);
+        }
+
+        private void label4_MouseHover(object sender, System.EventArgs e)
+        {
+            label4.Font = new Font(label4.Font, FontStyle.Underline);
+        }
+
+        private void groupLabel_MouseHover(object sender, EventArgs e)
+        {
+
+            if(editing) groupLabel.Font = new Font(groupLabel.Font, FontStyle.Underline | FontStyle.Bold);
+        }
+
+        private void label1_MouseLeave(object sender, EventArgs e)
+        {
+            label1.Font = new Font(label1.Font, FontStyle.Bold);
+        }
+
+        private void label2_MouseLeave(object sender, EventArgs e)
+        {
+            label2.Font = new Font(label2.Font, FontStyle.Regular);
+        }
+
+        private void label3_MouseLeave(object sender, EventArgs e)
+        {
+            label3.Font = new Font(label3.Font, FontStyle.Regular);
+        }
+
+        private void label4_MouseLeave(object sender, EventArgs e)
+        {
+            label4.Font = new Font(label4.Font, FontStyle.Regular);
+        }
+
+        private void groupLabel_MouseLeave(object sender, EventArgs e)
+        {
+            groupLabel.Font = new Font(groupLabel.Font, FontStyle.Bold);
+        }
+        #endregion
+
+        private void groupLabel_Click(object sender, EventArgs e)
+        {
+            if(editing)
+            {
+               
+
+                //if form is not yet opened
+                foreach(Form form in Application.OpenForms)
+                {
+                    if(form.Name == "ChangeGroup")
+                    {
+                        form.Show();
+                        return;
+                    }
+                }
+
+                ChangeGroup fm = new ChangeGroup(PasswordClass,passwordNumber,currentUser,form1);
+                fm.Show();
             }
         }
     }
