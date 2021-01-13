@@ -98,6 +98,7 @@ namespace PasswordManager.GroupManagement
         private void addGroupButton_Click(object sender, EventArgs e)
         {
             panel2.Show();
+            panel2.BringToFront();
             panelRemoveGroup.Hide();
             renamePanel.Hide();
         }
@@ -154,6 +155,7 @@ namespace PasswordManager.GroupManagement
             panel2.Hide();
             panelRemoveGroup.Hide();
             renamePanel.Show();
+            renamePanel.BringToFront();
         }
 
         private void renameButton_Click(object sender, EventArgs e)
@@ -205,5 +207,7 @@ namespace PasswordManager.GroupManagement
             }
             
         }
+
+       
     }
 }

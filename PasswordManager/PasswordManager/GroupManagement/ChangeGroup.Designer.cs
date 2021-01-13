@@ -78,11 +78,14 @@ namespace PasswordManager
             // 
             // groupBox
             // 
+            this.groupBox.BackColor = System.Drawing.Color.Silver;
             this.groupBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.groupBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox.FormattingEnabled = true;
             this.groupBox.Location = new System.Drawing.Point(219, 12);
             this.groupBox.Name = "groupBox";
-            this.groupBox.Size = new System.Drawing.Size(313, 21);
+            this.groupBox.Size = new System.Drawing.Size(313, 23);
             this.groupBox.TabIndex = 15;
             this.groupBox.SelectedIndexChanged += new System.EventHandler(this.groupBox_SelectedIndexChanged);
             // 

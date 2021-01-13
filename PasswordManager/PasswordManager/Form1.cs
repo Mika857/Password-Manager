@@ -19,85 +19,115 @@ namespace PasswordManager
         private bool passwordsShown;
 
         public string currentUser;
+        public string encryptedUser;
+
+        public bool sortByGroup;
+        public string groupSortName;
+
+        public List<Password> currentPasswords = new List<Password>();
+
 
        // public List<ListItem> listItems = new List<ListItem>();
-        public Form1(string currentUser)
+        public Form1(string currentUser,string encryptedUser)
         {
             InitializeComponent();
 
+            sortByGroup = false;
+
             passwordsShown = true;
             this.currentUser = currentUser;
-            userLabel.Text = "User: " + currentUser;
+            this.encryptedUser = encryptedUser;
+            userLabel.Text = "User: " + (currentUser);
 
-            data = SaveLoadManager.Load(currentUser);
+            data = SaveLoadManager.Load(encryptedUser);
+        }
+
+        #region reload form stuff
+        private void Reload()
+        {
+            object sender = new object();
+            EventArgs e = new EventArgs();
+            Form1_Load(sender, e);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             //load all passwords
-            data = SaveLoadManager.Load(currentUser);
+            data = SaveLoadManager.Load(encryptedUser);
 
             if (data != null)
             {
                 for (int i = 0; i < data.passwords.Count; i++)
                 {
-                    ListItem litem = new ListItem(currentUser,data.passwords[i],this,i);
-
-                    Console.WriteLine(litem.GroupName);
+                    ListItem litem = new ListItem(encryptedUser,data.passwords[i],this,i,i);
+                    litem.TabIndex = 999;
+                    currentPasswords.Add(data.passwords[i]);
 
                     passwordContainer.Controls.Add(litem);
                     litem.Show();
                     //listItems.Add(litem);
                 }
             }
-
-
         }
-
         
-
-        
-
-        public void ReloadForm(object sender, EventArgs e)
-        {
-            passwordContainer.Controls.Clear();
-            //InitializeComponent();
-            Form1_Load(sender, e);
-        }
-
+        /// <summary>
+        /// To reload the form - to reload to a specific group set sortByGroup to true and groupSortName to the group's name
+        /// </summary>
         public void ReloadForm()
         {
-            object sender = new object();
-            EventArgs e = new EventArgs();
+            currentPasswords.Clear();
 
             passwordContainer.Controls.Clear();
-            Form1_Load(sender, e);
-        }
+            data = SaveLoadManager.Load(encryptedUser);
 
-        public void ReloadForm(string groupName)
-        {
-            passwordContainer.Controls.Clear();
-
-            if(data != null)
+            if (sortByGroup)
             {
-                for (int i = 0; i < data.passwords.Count; i++)
+                if (data != null)
                 {
-                    Password password = data.passwords[i];
-                    if (password.groupName == groupName)
+                    for (int i = 0; i < data.passwords.Count; i++)
                     {
-                        ListItem litem = new ListItem(currentUser, password, this, i);
-                        passwordContainer.Controls.Add(litem);
-                        litem.Show();
+                        Password password = data.passwords[i];
+                        if (password.groupName == groupSortName)
+                        {
+                            currentPasswords.Add(password);
+                            ListItem litem = new ListItem(encryptedUser, password, this, i,currentPasswords.Count - 1);
+                            passwordContainer.Controls.Add(litem);
+                            litem.Show();
+                            litem.TabIndex = 999;
+                        }
                     }
                 }
             }
-
+            else
+            {
+                Reload();
+            }
             
         }
 
-      
+        #endregion
 
-      
+        #region user stuff - change password/username, logout, delete user
+         
+        private void changePasswordButton_Click(object sender, EventArgs e)
+        {
+            FormChangeUserPassword form = new FormChangeUserPassword(currentUser, UserOptions.Password, this);
+            form.Show();
+            this.Hide();
+        }
+        private void changeUsernameButton_Click(object sender, EventArgs e)
+        {
+            FormChangeUserPassword form = new FormChangeUserPassword(currentUser, UserOptions.Username, this);
+            form.Show();
+            this.Hide();
+        }
+
+        public void ChangeUsername(string username)
+        {
+            currentUser = username;
+            userLabel.Text = "User: " + currentUser;
+        }
+
         private void logOutButton_Click(object sender, EventArgs e)
         {
 
@@ -122,7 +152,7 @@ namespace PasswordManager
             DialogResult result;
             result = MessageBox.Show(message, caption, buttons);
 
-            if(result == DialogResult.Yes)
+            if (result == DialogResult.Yes)
             {
                 UserData users = SaveLoadManager.Load();
 
@@ -148,35 +178,10 @@ namespace PasswordManager
                     logOutButton_Click(sender, e);
                 }
             }
-
-            
-            
-        }
-
-        #region Change Password
-        private void changePasswordButton_Click(object sender, EventArgs e)
-        {
-            FormChangeUserPassword form = new FormChangeUserPassword(currentUser,UserOptions.Password,this);
-            form.Show();
-            this.Hide();
         }
         #endregion
 
-        #region Change Username
-        private void changeUsernameButton_Click(object sender, EventArgs e)
-        {
-            FormChangeUserPassword form = new FormChangeUserPassword(currentUser, UserOptions.Username, this);
-            form.Show();
-            this.Hide();
-        }
-        #endregion
-
-        public void ChangeUsername(string username)
-        {
-            currentUser = username;
-            userLabel.Text = "User: " + currentUser;
-        }
-
+        #region sort stuff
         private void alphabetSortButton_Click(object sender, EventArgs e)
         {
             //sort list by alphabet | x - 'A': number starting with 0 
@@ -204,13 +209,28 @@ namespace PasswordManager
                     }
                 }
 
-                SaveLoadManager.Save(data, currentUser);
+                SaveLoadManager.Save(data, encryptedUser);
 
                 ReloadForm();
             }
         }
 
-        
+        private void sortGroupsButton_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name == "SortGroups")
+                {
+                    form.Show();
+                    form.Focus();
+                    return;
+                }
+            }
+
+            SortGroups groups = new SortGroups(this);
+            groups.Show();
+        }
+        #endregion
 
         private void manageGroupsButton_Click(object sender, EventArgs e)
         {
@@ -226,7 +246,7 @@ namespace PasswordManager
 
         private void newpasswordButton_Click(object sender, EventArgs e)
         {
-            Form2 newForm = new Form2(currentUser, this);
+            Form2 newForm = new Form2(encryptedUser, this);
 
             newForm.Show();
             this.Hide();
@@ -255,19 +275,6 @@ namespace PasswordManager
             }
         }
 
-        private void sortGroupsButton_Click(object sender, EventArgs e)
-        {
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form.Name == "SortGroups")
-                {
-                    form.Show();
-                    return;
-                }
-            }
-
-            SortGroups groups = new SortGroups(this);
-            groups.Show();
-        }
+        
     }
 }

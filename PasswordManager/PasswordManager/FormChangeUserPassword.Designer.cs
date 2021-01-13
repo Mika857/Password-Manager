@@ -35,11 +35,12 @@
             // 
             // changeBox
             // 
-            this.changeBox.BackColor = System.Drawing.Color.White;
+            this.changeBox.BackColor = System.Drawing.Color.Silver;
             this.changeBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.changeBox.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.changeBox.Location = new System.Drawing.Point(12, 12);
             this.changeBox.Name = "changeBox";
-            this.changeBox.Size = new System.Drawing.Size(161, 20);
+            this.changeBox.Size = new System.Drawing.Size(161, 23);
             this.changeBox.TabIndex = 3;
             this.changeBox.UseSystemPasswordChar = true;
             // 
@@ -51,6 +52,7 @@
             this.saveButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.saveButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveButton.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveButton.ForeColor = System.Drawing.Color.Gainsboro;
             this.saveButton.Location = new System.Drawing.Point(0, 82);
             this.saveButton.Name = "saveButton";
@@ -68,6 +70,7 @@
             this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Gainsboro;
             this.button1.Location = new System.Drawing.Point(0, 117);
             this.button1.Name = "button1";

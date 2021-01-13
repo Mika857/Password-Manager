@@ -75,12 +75,12 @@ namespace PasswordManager
             }
             else if (Username.Text != "" && textBox1.Text != "" && textBox2.Text == textBox1.Text)
             {
-                UserClass newUser = new UserClass(Username.Text, textBox1.Text);
+                UserClass newUser = new UserClass(Username.Text, textBox1.Text,Crypto.EncryptString(Username.Text));
                 users.userList.Add(newUser);
                 users.lastUser = Username.Text;
                 SaveLoadManager.Save(users);
 
-                Form1 form = new Form1(Username.Text);
+                Form1 form = new Form1(Username.Text,newUser.encryptedUser);
 
                 form.Show();
                 this.Close();

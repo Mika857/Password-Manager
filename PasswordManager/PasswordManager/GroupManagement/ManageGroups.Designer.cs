@@ -30,26 +30,26 @@ namespace PasswordManager.GroupManagement
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.closeButton = new System.Windows.Forms.Button();
             this.removeGroupButton = new System.Windows.Forms.Button();
+            this.renameGroupButton = new System.Windows.Forms.Button();
             this.addGroupButton = new System.Windows.Forms.Button();
             this.addGroupPanel = new System.Windows.Forms.Panel();
-            this.panelRemoveGroup = new System.Windows.Forms.Panel();
-            this.removeGroup = new System.Windows.Forms.Button();
-            this.removeBox = new System.Windows.Forms.ComboBox();
             this.saveNewGroup = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.newPasswordInput = new System.Windows.Forms.RichTextBox();
-            this.closeButton = new System.Windows.Forms.Button();
-            this.renameGroupButton = new System.Windows.Forms.Button();
+            this.panelRemoveGroup = new System.Windows.Forms.Panel();
+            this.removeGroup = new System.Windows.Forms.Button();
+            this.removeBox = new System.Windows.Forms.ComboBox();
             this.renamePanel = new System.Windows.Forms.Panel();
-            this.renameButton = new System.Windows.Forms.Button();
-            this.renameBox = new System.Windows.Forms.ComboBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.renameTextBox = new System.Windows.Forms.RichTextBox();
+            this.renameButton = new System.Windows.Forms.Button();
+            this.renameBox = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.addGroupPanel.SuspendLayout();
-            this.panelRemoveGroup.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panelRemoveGroup.SuspendLayout();
             this.renamePanel.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
@@ -65,6 +65,26 @@ namespace PasswordManager.GroupManagement
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(170, 234);
             this.panel1.TabIndex = 0;
+            // 
+            // closeButton
+            // 
+            this.closeButton.BackColor = System.Drawing.Color.Black;
+            this.closeButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.closeButton.FlatAppearance.BorderSize = 0;
+            this.closeButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray;
+            this.closeButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closeButton.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closeButton.ForeColor = System.Drawing.Color.Gainsboro;
+            this.closeButton.Location = new System.Drawing.Point(0, 189);
+            this.closeButton.Margin = new System.Windows.Forms.Padding(0);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(170, 45);
+            this.closeButton.TabIndex = 5;
+            this.closeButton.Text = "Close";
+            this.closeButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.closeButton.UseVisualStyleBackColor = false;
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
             // removeGroupButton
             // 
@@ -85,6 +105,26 @@ namespace PasswordManager.GroupManagement
             this.removeGroupButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.removeGroupButton.UseVisualStyleBackColor = false;
             this.removeGroupButton.Click += new System.EventHandler(this.removeGroupButton_Click);
+            // 
+            // renameGroupButton
+            // 
+            this.renameGroupButton.BackColor = System.Drawing.Color.Black;
+            this.renameGroupButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.renameGroupButton.FlatAppearance.BorderSize = 0;
+            this.renameGroupButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray;
+            this.renameGroupButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.renameGroupButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.renameGroupButton.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.renameGroupButton.ForeColor = System.Drawing.Color.Gainsboro;
+            this.renameGroupButton.Location = new System.Drawing.Point(0, 45);
+            this.renameGroupButton.Margin = new System.Windows.Forms.Padding(0);
+            this.renameGroupButton.Name = "renameGroupButton";
+            this.renameGroupButton.Size = new System.Drawing.Size(170, 45);
+            this.renameGroupButton.TabIndex = 6;
+            this.renameGroupButton.Text = "Rename Group";
+            this.renameGroupButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.renameGroupButton.UseVisualStyleBackColor = false;
+            this.renameGroupButton.Click += new System.EventHandler(this.renameGroupButton_Click);
             // 
             // addGroupButton
             // 
@@ -118,6 +158,47 @@ namespace PasswordManager.GroupManagement
             this.addGroupPanel.Size = new System.Drawing.Size(667, 234);
             this.addGroupPanel.TabIndex = 1;
             // 
+            // saveNewGroup
+            // 
+            this.saveNewGroup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.saveNewGroup.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.saveNewGroup.FlatAppearance.BorderSize = 0;
+            this.saveNewGroup.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
+            this.saveNewGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveNewGroup.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveNewGroup.ForeColor = System.Drawing.Color.Gainsboro;
+            this.saveNewGroup.Location = new System.Drawing.Point(0, 189);
+            this.saveNewGroup.Name = "saveNewGroup";
+            this.saveNewGroup.Size = new System.Drawing.Size(667, 45);
+            this.saveNewGroup.TabIndex = 2;
+            this.saveNewGroup.Text = "Add";
+            this.saveNewGroup.UseVisualStyleBackColor = false;
+            this.saveNewGroup.Click += new System.EventHandler(this.saveNewGroup_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.DarkGray;
+            this.panel2.Controls.Add(this.newPasswordInput);
+            this.panel2.Location = new System.Drawing.Point(199, 45);
+            this.panel2.Name = "panel2";
+            this.panel2.Padding = new System.Windows.Forms.Padding(10);
+            this.panel2.Size = new System.Drawing.Size(281, 40);
+            this.panel2.TabIndex = 1;
+            // 
+            // newPasswordInput
+            // 
+            this.newPasswordInput.BackColor = System.Drawing.Color.Silver;
+            this.newPasswordInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.newPasswordInput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.newPasswordInput.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newPasswordInput.Location = new System.Drawing.Point(10, 10);
+            this.newPasswordInput.Margin = new System.Windows.Forms.Padding(20);
+            this.newPasswordInput.Multiline = false;
+            this.newPasswordInput.Name = "newPasswordInput";
+            this.newPasswordInput.Size = new System.Drawing.Size(261, 20);
+            this.newPasswordInput.TabIndex = 0;
+            this.newPasswordInput.Text = "";
+            // 
             // panelRemoveGroup
             // 
             this.panelRemoveGroup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
@@ -148,93 +229,15 @@ namespace PasswordManager.GroupManagement
             // 
             // removeBox
             // 
+            this.removeBox.BackColor = System.Drawing.Color.Silver;
             this.removeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.removeBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.removeBox.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.removeBox.FormattingEnabled = true;
             this.removeBox.Location = new System.Drawing.Point(227, 45);
             this.removeBox.Name = "removeBox";
-            this.removeBox.Size = new System.Drawing.Size(228, 21);
+            this.removeBox.Size = new System.Drawing.Size(228, 23);
             this.removeBox.TabIndex = 0;
-            // 
-            // saveNewGroup
-            // 
-            this.saveNewGroup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.saveNewGroup.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.saveNewGroup.FlatAppearance.BorderSize = 0;
-            this.saveNewGroup.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
-            this.saveNewGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.saveNewGroup.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveNewGroup.ForeColor = System.Drawing.Color.Gainsboro;
-            this.saveNewGroup.Location = new System.Drawing.Point(0, 189);
-            this.saveNewGroup.Name = "saveNewGroup";
-            this.saveNewGroup.Size = new System.Drawing.Size(667, 45);
-            this.saveNewGroup.TabIndex = 2;
-            this.saveNewGroup.Text = "Add";
-            this.saveNewGroup.UseVisualStyleBackColor = false;
-            this.saveNewGroup.Click += new System.EventHandler(this.saveNewGroup_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Controls.Add(this.newPasswordInput);
-            this.panel2.Location = new System.Drawing.Point(199, 45);
-            this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.panel2.Size = new System.Drawing.Size(281, 40);
-            this.panel2.TabIndex = 1;
-            // 
-            // newPasswordInput
-            // 
-            this.newPasswordInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.newPasswordInput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.newPasswordInput.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newPasswordInput.Location = new System.Drawing.Point(10, 10);
-            this.newPasswordInput.Margin = new System.Windows.Forms.Padding(20);
-            this.newPasswordInput.Multiline = false;
-            this.newPasswordInput.Name = "newPasswordInput";
-            this.newPasswordInput.Size = new System.Drawing.Size(261, 20);
-            this.newPasswordInput.TabIndex = 0;
-            this.newPasswordInput.Text = "";
-            // 
-            // closeButton
-            // 
-            this.closeButton.BackColor = System.Drawing.Color.Black;
-            this.closeButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.closeButton.FlatAppearance.BorderSize = 0;
-            this.closeButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray;
-            this.closeButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.closeButton.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closeButton.ForeColor = System.Drawing.Color.Gainsboro;
-            this.closeButton.Location = new System.Drawing.Point(0, 189);
-            this.closeButton.Margin = new System.Windows.Forms.Padding(0);
-            this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(170, 45);
-            this.closeButton.TabIndex = 5;
-            this.closeButton.Text = "Close";
-            this.closeButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.closeButton.UseVisualStyleBackColor = false;
-            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
-            // 
-            // renameGroupButton
-            // 
-            this.renameGroupButton.BackColor = System.Drawing.Color.Black;
-            this.renameGroupButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.renameGroupButton.FlatAppearance.BorderSize = 0;
-            this.renameGroupButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray;
-            this.renameGroupButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.renameGroupButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.renameGroupButton.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.renameGroupButton.ForeColor = System.Drawing.Color.Gainsboro;
-            this.renameGroupButton.Location = new System.Drawing.Point(0, 45);
-            this.renameGroupButton.Margin = new System.Windows.Forms.Padding(0);
-            this.renameGroupButton.Name = "renameGroupButton";
-            this.renameGroupButton.Size = new System.Drawing.Size(170, 45);
-            this.renameGroupButton.TabIndex = 6;
-            this.renameGroupButton.Text = "Rename Group";
-            this.renameGroupButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.renameGroupButton.UseVisualStyleBackColor = false;
-            this.renameGroupButton.Click += new System.EventHandler(this.renameGroupButton_Click);
             // 
             // renamePanel
             // 
@@ -247,6 +250,30 @@ namespace PasswordManager.GroupManagement
             this.renamePanel.Name = "renamePanel";
             this.renamePanel.Size = new System.Drawing.Size(667, 234);
             this.renamePanel.TabIndex = 4;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.DarkGray;
+            this.panel3.Controls.Add(this.renameTextBox);
+            this.panel3.Location = new System.Drawing.Point(199, 90);
+            this.panel3.Name = "panel3";
+            this.panel3.Padding = new System.Windows.Forms.Padding(10);
+            this.panel3.Size = new System.Drawing.Size(281, 40);
+            this.panel3.TabIndex = 2;
+            // 
+            // renameTextBox
+            // 
+            this.renameTextBox.BackColor = System.Drawing.Color.Silver;
+            this.renameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.renameTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.renameTextBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.renameTextBox.Location = new System.Drawing.Point(10, 10);
+            this.renameTextBox.Margin = new System.Windows.Forms.Padding(20);
+            this.renameTextBox.Multiline = false;
+            this.renameTextBox.Name = "renameTextBox";
+            this.renameTextBox.Size = new System.Drawing.Size(261, 20);
+            this.renameTextBox.TabIndex = 0;
+            this.renameTextBox.Text = "";
             // 
             // renameButton
             // 
@@ -267,36 +294,15 @@ namespace PasswordManager.GroupManagement
             // 
             // renameBox
             // 
+            this.renameBox.BackColor = System.Drawing.Color.Silver;
             this.renameBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.renameBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.renameBox.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.renameBox.FormattingEnabled = true;
             this.renameBox.Location = new System.Drawing.Point(227, 45);
             this.renameBox.Name = "renameBox";
-            this.renameBox.Size = new System.Drawing.Size(228, 21);
+            this.renameBox.Size = new System.Drawing.Size(228, 23);
             this.renameBox.TabIndex = 0;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.White;
-            this.panel3.Controls.Add(this.renameTextBox);
-            this.panel3.Location = new System.Drawing.Point(199, 90);
-            this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(10);
-            this.panel3.Size = new System.Drawing.Size(281, 40);
-            this.panel3.TabIndex = 2;
-            // 
-            // renameTextBox
-            // 
-            this.renameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.renameTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.renameTextBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.renameTextBox.Location = new System.Drawing.Point(10, 10);
-            this.renameTextBox.Margin = new System.Windows.Forms.Padding(20);
-            this.renameTextBox.Multiline = false;
-            this.renameTextBox.Name = "renameTextBox";
-            this.renameTextBox.Size = new System.Drawing.Size(261, 20);
-            this.renameTextBox.TabIndex = 0;
-            this.renameTextBox.Text = "";
             // 
             // ManageGroups
             // 
@@ -305,8 +311,8 @@ namespace PasswordManager.GroupManagement
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(837, 234);
             this.Controls.Add(this.renamePanel);
-            this.Controls.Add(this.panelRemoveGroup);
             this.Controls.Add(this.addGroupPanel);
+            this.Controls.Add(this.panelRemoveGroup);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ManageGroups";
@@ -314,8 +320,8 @@ namespace PasswordManager.GroupManagement
             this.Load += new System.EventHandler(this.ManageGroups_Load);
             this.panel1.ResumeLayout(false);
             this.addGroupPanel.ResumeLayout(false);
-            this.panelRemoveGroup.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panelRemoveGroup.ResumeLayout(false);
             this.renamePanel.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);

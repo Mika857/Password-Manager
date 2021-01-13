@@ -14,7 +14,7 @@ namespace PasswordManager
     {
         bool editing;
         string currentUser;
-        public ListItem(string currUser, Password password, Form1 form1, int passwordNumber)
+        public ListItem(string currUser, Password password, Form1 form1, int passwordNumber, int currentIndex)
         {
             InitializeComponent();
             //BackColor = Color.White;
@@ -31,6 +31,7 @@ namespace PasswordManager
             this.GroupName = password.groupName;
             this.form1 = form1;
             this.passwordNumber = passwordNumber;
+            this.currentIndex = currentIndex;
 
             label1.MouseEnter += new System.EventHandler(label1_MouseHover);
             label2.MouseEnter += new System.EventHandler(label2_MouseHover);
@@ -143,14 +144,18 @@ namespace PasswordManager
             set { passwordNumber = value; }
         }
 
-        
+        private int currentIndex;
+
+        public int CurrentIndex
+        {
+            get { return currentIndex; }
+            set { currentIndex = value; }
+        }
+
 
         #endregion
 
-        private void ListItem_Load(object sender, EventArgs e)
-        {
-            //BackColor = Color.White;
-        }
+        #region labels 
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -167,6 +172,7 @@ namespace PasswordManager
         {
             if(editing)
             {
+
                 FormChangeProp newForm = new FormChangeProp(form1, passwordNumber, "username", username, currentUser);
                 newForm.Text = "Change Username";
                 newForm.Show();
@@ -221,10 +227,25 @@ namespace PasswordManager
              
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void groupLabel_Click(object sender, EventArgs e)
         {
+            if (editing)
+            {
+                //if form is not yet opened
+                foreach (Form form in Application.OpenForms)
+                {
+                    if (form.Name == "ChangeGroup")
+                    {
+                        form.Show();
+                        return;
+                    }
+                }
 
+                ChangeGroup fm = new ChangeGroup(PasswordClass, passwordNumber, currentUser, form1);
+                fm.Show();
+            }
         }
+        #endregion
 
         #region RemoveItem
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -234,7 +255,7 @@ namespace PasswordManager
                 form1.data.passwords.Remove(PasswordClass);
                 this.Hide();
                 SaveLoadManager.Save(form1.data,currentUser);
-                form1.ReloadForm(sender, e);
+                form1.ReloadForm();
             }
         }
         #endregion
@@ -242,16 +263,25 @@ namespace PasswordManager
         #region moveItemUp
         private void pictureBox2_Click(object sender, EventArgs e)
         {
+           
+
             //move up in array
-            if(passwordNumber > 0 && !editing)
+            if(currentIndex > 0 && !editing)
             {
-                Password oldPa = form1.data.passwords[passwordNumber - 1];
-                form1.data.passwords[passwordNumber - 1] = form1.data.passwords[passwordNumber];
-                form1.data.passwords[passwordNumber] = oldPa;
-                passwordNumber--;
+                int index2 = 0;
+                for (int i = 0; i < form1.data.passwords.Count; i++)
+                {
+                    if (form1.data.passwords[i] == form1.currentPasswords[currentIndex - 1])
+                    {
+                        index2 = i;
+                    }
+
+                }
+
+                MovePassword(passwordNumber, index2);
                 SaveLoadManager.Save(form1.data,currentUser);
 
-                form1.ReloadForm(sender, e);
+                form1.ReloadForm();
             }
         }
         #endregion
@@ -260,14 +290,21 @@ namespace PasswordManager
         private void pictureBox3_Click(object sender, EventArgs e)
         {
             //move up in array
-            if (passwordNumber < form1.data.passwords.Count-1 && !editing)
+            if (currentIndex < form1.currentPasswords.Count-1 && !editing)
             {
-                int oldNumber = PasswordNumber + 1;
+                int index2 = 0;
+                for (int i = 0; i < form1.data.passwords.Count; i++)
+                {
+                    if (form1.data.passwords[i] == form1.currentPasswords[currentIndex + 1])
+                    {
+                        index2 = i;
+                    }
+
+                }
+
                 //Data update
-                Password oldPa = form1.data.passwords[oldNumber];
-                form1.data.passwords[oldNumber] = form1.data.passwords[passwordNumber];
-                form1.data.passwords[passwordNumber] = oldPa;
-                passwordNumber++;
+                MovePassword(passwordNumber, index2);
+
                 SaveLoadManager.Save(form1.data,currentUser);
 
                 //Update form
@@ -275,8 +312,22 @@ namespace PasswordManager
                 //form1.listItems[oldNumber] = form1.listItems[passwordNumber];
                 //form1.listItems[passwordNumber] = oldItem;
 
-                form1.ReloadForm(sender, e);
+                form1.ReloadForm();
             }
+        }
+        #endregion
+
+        #region move items
+
+        /// <summary>
+        /// index 1 is old password index, index 2 is new password index
+        /// </summary>
+        private void MovePassword(int index1, int index2)
+        {
+            Password oldPa = form1.data.passwords[index2];
+            form1.data.passwords[index2] = form1.data.passwords[index1];
+            form1.data.passwords[index1] = oldPa;
+            passwordNumber = index2;
         }
         #endregion
 
@@ -358,26 +409,5 @@ namespace PasswordManager
             groupLabel.Font = new Font(groupLabel.Font, FontStyle.Bold);
         }
         #endregion
-
-        private void groupLabel_Click(object sender, EventArgs e)
-        {
-            if(editing)
-            {
-               
-
-                //if form is not yet opened
-                foreach(Form form in Application.OpenForms)
-                {
-                    if(form.Name == "ChangeGroup")
-                    {
-                        form.Show();
-                        return;
-                    }
-                }
-
-                ChangeGroup fm = new ChangeGroup(PasswordClass,passwordNumber,currentUser,form1);
-                fm.Show();
-            }
-        }
     }
 }

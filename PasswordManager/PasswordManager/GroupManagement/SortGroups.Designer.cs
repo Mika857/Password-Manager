@@ -73,10 +73,12 @@ namespace PasswordManager
             // groupBox
             // 
             this.groupBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.groupBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox.FormattingEnabled = true;
             this.groupBox.Location = new System.Drawing.Point(12, 12);
             this.groupBox.Name = "groupBox";
-            this.groupBox.Size = new System.Drawing.Size(150, 21);
+            this.groupBox.Size = new System.Drawing.Size(150, 23);
             this.groupBox.TabIndex = 12;
             // 
             // SortGroups

@@ -70,7 +70,7 @@ namespace PasswordManager
             }
 
             SaveLoadManager.Save(form.data, currentUser);
-            form.ReloadForm(sender, e);
+            form.ReloadForm();
             this.Close();
             form.Show();
         }

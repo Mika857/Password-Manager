@@ -36,16 +36,16 @@
             this.logOutButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
             this.manageGroupsButton = new System.Windows.Forms.Button();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.deletUserButton = new System.Windows.Forms.Button();
             this.changePasswordButton = new System.Windows.Forms.Button();
             this.changeUsernameButton = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.sortGroupsButton = new System.Windows.Forms.Button();
             this.alphabetSortButton = new System.Windows.Forms.Button();
             this.hideShowButton = new System.Windows.Forms.Button();
             this.newpasswordButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -55,12 +55,12 @@
             // 
             this.passwordContainer.AutoScroll = true;
             this.passwordContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.passwordContainer.Dock = System.Windows.Forms.DockStyle.Right;
+            this.passwordContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.passwordContainer.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.passwordContainer.Location = new System.Drawing.Point(218, 0);
+            this.passwordContainer.Location = new System.Drawing.Point(219, 0);
             this.passwordContainer.Name = "passwordContainer";
-            this.passwordContainer.Size = new System.Drawing.Size(574, 652);
-            this.passwordContainer.TabIndex = 1;
+            this.passwordContainer.Size = new System.Drawing.Size(573, 652);
+            this.passwordContainer.TabIndex = 999;
             this.passwordContainer.WrapContents = false;
             // 
             // userLabel
@@ -74,7 +74,7 @@
             this.userLabel.Margin = new System.Windows.Forms.Padding(3);
             this.userLabel.Name = "userLabel";
             this.userLabel.Size = new System.Drawing.Size(57, 29);
-            this.userLabel.TabIndex = 7;
+            this.userLabel.TabIndex = 999;
             this.userLabel.Text = "User";
             this.userLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -125,7 +125,7 @@
             this.logOutButton.Location = new System.Drawing.Point(0, 503);
             this.logOutButton.Name = "logOutButton";
             this.logOutButton.Size = new System.Drawing.Size(219, 45);
-            this.logOutButton.TabIndex = 16;
+            this.logOutButton.TabIndex = 8;
             this.logOutButton.Text = "Log Out";
             this.logOutButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.logOutButton.UseVisualStyleBackColor = false;
@@ -146,7 +146,7 @@
             this.closeButton.Location = new System.Drawing.Point(0, 548);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(219, 45);
-            this.closeButton.TabIndex = 18;
+            this.closeButton.TabIndex = 9;
             this.closeButton.Text = "Close";
             this.closeButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.closeButton.UseVisualStyleBackColor = false;
@@ -167,11 +167,19 @@
             this.manageGroupsButton.Location = new System.Drawing.Point(0, 355);
             this.manageGroupsButton.Name = "manageGroupsButton";
             this.manageGroupsButton.Size = new System.Drawing.Size(219, 45);
-            this.manageGroupsButton.TabIndex = 17;
+            this.manageGroupsButton.TabIndex = 7;
             this.manageGroupsButton.Text = "Manage Groups";
             this.manageGroupsButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.manageGroupsButton.UseVisualStyleBackColor = false;
             this.manageGroupsButton.Click += new System.EventHandler(this.manageGroupsButton_Click);
+            // 
+            // panel4
+            // 
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 335);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(219, 20);
+            this.panel4.TabIndex = 1;
             // 
             // deletUserButton
             // 
@@ -188,7 +196,7 @@
             this.deletUserButton.Location = new System.Drawing.Point(0, 290);
             this.deletUserButton.Name = "deletUserButton";
             this.deletUserButton.Size = new System.Drawing.Size(219, 45);
-            this.deletUserButton.TabIndex = 15;
+            this.deletUserButton.TabIndex = 6;
             this.deletUserButton.Text = "Delete This User";
             this.deletUserButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.deletUserButton.UseVisualStyleBackColor = false;
@@ -209,7 +217,7 @@
             this.changePasswordButton.Location = new System.Drawing.Point(0, 245);
             this.changePasswordButton.Name = "changePasswordButton";
             this.changePasswordButton.Size = new System.Drawing.Size(219, 45);
-            this.changePasswordButton.TabIndex = 14;
+            this.changePasswordButton.TabIndex = 5;
             this.changePasswordButton.Text = "Change Password";
             this.changePasswordButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.changePasswordButton.UseVisualStyleBackColor = false;
@@ -230,11 +238,19 @@
             this.changeUsernameButton.Location = new System.Drawing.Point(0, 200);
             this.changeUsernameButton.Name = "changeUsernameButton";
             this.changeUsernameButton.Size = new System.Drawing.Size(219, 45);
-            this.changeUsernameButton.TabIndex = 13;
+            this.changeUsernameButton.TabIndex = 4;
             this.changeUsernameButton.Text = "Change Username";
             this.changeUsernameButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.changeUsernameButton.UseVisualStyleBackColor = false;
             this.changeUsernameButton.Click += new System.EventHandler(this.changeUsernameButton_Click);
+            // 
+            // panel5
+            // 
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 180);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(219, 20);
+            this.panel5.TabIndex = 0;
             // 
             // sortGroupsButton
             // 
@@ -251,7 +267,7 @@
             this.sortGroupsButton.Location = new System.Drawing.Point(0, 135);
             this.sortGroupsButton.Name = "sortGroupsButton";
             this.sortGroupsButton.Size = new System.Drawing.Size(219, 45);
-            this.sortGroupsButton.TabIndex = 12;
+            this.sortGroupsButton.TabIndex = 3;
             this.sortGroupsButton.Text = "Sort By Groups";
             this.sortGroupsButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.sortGroupsButton.UseVisualStyleBackColor = false;
@@ -272,7 +288,7 @@
             this.alphabetSortButton.Location = new System.Drawing.Point(0, 90);
             this.alphabetSortButton.Name = "alphabetSortButton";
             this.alphabetSortButton.Size = new System.Drawing.Size(219, 45);
-            this.alphabetSortButton.TabIndex = 11;
+            this.alphabetSortButton.TabIndex = 2;
             this.alphabetSortButton.Text = "Sort By Alphabet";
             this.alphabetSortButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.alphabetSortButton.UseVisualStyleBackColor = false;
@@ -293,7 +309,7 @@
             this.hideShowButton.Location = new System.Drawing.Point(0, 45);
             this.hideShowButton.Name = "hideShowButton";
             this.hideShowButton.Size = new System.Drawing.Size(219, 45);
-            this.hideShowButton.TabIndex = 10;
+            this.hideShowButton.TabIndex = 1;
             this.hideShowButton.Text = "Hide Passwords";
             this.hideShowButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.hideShowButton.UseVisualStyleBackColor = false;
@@ -315,7 +331,7 @@
             this.newpasswordButton.Location = new System.Drawing.Point(0, 0);
             this.newpasswordButton.Name = "newpasswordButton";
             this.newpasswordButton.Size = new System.Drawing.Size(219, 45);
-            this.newpasswordButton.TabIndex = 9;
+            this.newpasswordButton.TabIndex = 0;
             this.newpasswordButton.Text = "New Password";
             this.newpasswordButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.newpasswordButton.UseVisualStyleBackColor = false;
@@ -329,23 +345,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(219, 59);
-            this.panel2.TabIndex = 9;
-            // 
-            // panel4
-            // 
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 335);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(219, 20);
-            this.panel4.TabIndex = 19;
-            // 
-            // panel5
-            // 
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 180);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(219, 20);
-            this.panel5.TabIndex = 20;
+            this.panel2.TabIndex = 999;
             // 
             // Form1
             // 
@@ -359,7 +359,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Password Manager";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);

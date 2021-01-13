@@ -64,7 +64,7 @@ namespace PasswordManager
             {
                 if (Username.Text == users[i].username && textBox1.Text == users[i].password)
                 {
-                    Form1 form = new Form1(users[i].username);
+                    Form1 form = new Form1(users[i].username,users[i].encryptedUser);
                     UserData userClass = new UserData(users, Username.Text);
                     SaveLoadManager.Save(userClass);
                     form.Show();

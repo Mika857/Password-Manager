@@ -88,7 +88,7 @@ namespace PasswordManager
         public static void Save(Data data,string currentUser)
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            if (!Directory.Exists(path + "/" + folder + "/" +currentUser))
+            if (!Directory.Exists(path + "/" + folder + "/" + currentUser))
             {
                 string folderName = Path.Combine(path, folder ,currentUser);
                 Directory.CreateDirectory(folderName);
@@ -286,7 +286,7 @@ namespace PasswordManager
     {
         public string name, email, username, password,groupName;
         // -1 is no group! > one of the groups depending on array index
-        public int groupId;
+      
 
         public Password(string n, string e, string u, string p,string groupName)
         {
@@ -315,12 +315,13 @@ namespace PasswordManager
     [Serializable]
     public class UserClass
     {
-        public string username,password;
+        public string username,password,encryptedUser;
 
-        public UserClass(string uname,string pass)
+        public UserClass(string uname,string pass,string encryptedUser)
         {
             username = uname;
             password = pass;
+            this.encryptedUser = encryptedUser;
         }
     }
     #endregion

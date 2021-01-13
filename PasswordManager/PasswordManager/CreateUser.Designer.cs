@@ -61,13 +61,13 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Teal;
+            this.label3.ForeColor = System.Drawing.Color.Gainsboro;
             this.label3.Location = new System.Drawing.Point(12, 61);
             this.label3.Margin = new System.Windows.Forms.Padding(3);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(63, 15);
+            this.label3.Size = new System.Drawing.Size(59, 15);
             this.label3.TabIndex = 13;
-            this.label3.Text = "Password:";
+            this.label3.Text = "Password";
             // 
             // label2
             // 
@@ -75,32 +75,34 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Teal;
+            this.label2.ForeColor = System.Drawing.Color.Gainsboro;
             this.label2.Location = new System.Drawing.Point(12, 12);
             this.label2.Margin = new System.Windows.Forms.Padding(3);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 15);
+            this.label2.Size = new System.Drawing.Size(63, 15);
             this.label2.TabIndex = 12;
-            this.label2.Text = "Username: ";
+            this.label2.Text = "Username";
             // 
             // textBox1
             // 
-            this.textBox1.BackColor = System.Drawing.Color.White;
+            this.textBox1.BackColor = System.Drawing.Color.Silver;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(15, 84);
             this.textBox1.Name = "textBox1";
             this.textBox1.PasswordChar = '*';
-            this.textBox1.Size = new System.Drawing.Size(141, 20);
+            this.textBox1.Size = new System.Drawing.Size(141, 23);
             this.textBox1.TabIndex = 1;
             this.textBox1.UseSystemPasswordChar = true;
             // 
             // Username
             // 
-            this.Username.BackColor = System.Drawing.Color.White;
+            this.Username.BackColor = System.Drawing.Color.Silver;
             this.Username.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Username.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Username.Location = new System.Drawing.Point(15, 35);
             this.Username.Name = "Username";
-            this.Username.Size = new System.Drawing.Size(141, 20);
+            this.Username.Size = new System.Drawing.Size(141, 23);
             this.Username.TabIndex = 0;
             // 
             // backButton
@@ -122,12 +124,13 @@
             // 
             // textBox2
             // 
-            this.textBox2.BackColor = System.Drawing.Color.White;
+            this.textBox2.BackColor = System.Drawing.Color.Silver;
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(15, 133);
             this.textBox2.Name = "textBox2";
             this.textBox2.PasswordChar = '*';
-            this.textBox2.Size = new System.Drawing.Size(141, 20);
+            this.textBox2.Size = new System.Drawing.Size(141, 23);
             this.textBox2.TabIndex = 2;
             this.textBox2.UseSystemPasswordChar = true;
             // 
@@ -137,13 +140,13 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Teal;
+            this.label1.ForeColor = System.Drawing.Color.Gainsboro;
             this.label1.Location = new System.Drawing.Point(12, 110);
             this.label1.Margin = new System.Windows.Forms.Padding(3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 15);
+            this.label1.Size = new System.Drawing.Size(101, 15);
             this.label1.TabIndex = 18;
-            this.label1.Text = "Repeat Password:";
+            this.label1.Text = "Repeat Password";
             // 
             // CreateUser
             // 

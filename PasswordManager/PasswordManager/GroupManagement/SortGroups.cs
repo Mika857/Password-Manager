@@ -52,15 +52,20 @@ namespace PasswordManager
                 {
                     if(item.GroupName == groupBox.Text)
                     {
-                        form1.ReloadForm(item.GroupName);
-                        return;
+                        form1.groupSortName = groupBox.Text;
+                        form1.sortByGroup = true;
+                        form1.ReloadForm();
+                        break;
                     }
                 }
             }
             else
             {
+                form1.sortByGroup = false;
                 form1.ReloadForm();
             }
+
+            lastForm.Focus();
         }
     }
 }
